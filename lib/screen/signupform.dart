@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:phploginform/screen/loginfoem.dart';
 import '../widget/textwidget.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _SignupScreenState extends State<SignupScreen> {
       try {
         /*set the current PC ip*/
         response = await dio.post(
-            "http://192.168.1.5/flutter_api/insert_record.php",
+            "http://192.168.1.13/flutter_api/insert_record.php",
             data: formData);
         print("data inserted");
         if (response!.statusCode == 200) {
@@ -38,6 +39,8 @@ class _SignupScreenState extends State<SignupScreen> {
       } catch (e) {
         print(e);
       }
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => LoginForm()));
     } else {
       print("Please Filled All Field");
     }
