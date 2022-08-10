@@ -17,6 +17,7 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
+
   // TextEditingController cPass = TextEditingController();
 
   Future<dynamic> insertrecord() async {
@@ -40,7 +41,7 @@ class _SignupScreenState extends State<SignupScreen> {
         print(e);
       }
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => LoginForm()));
+          context, MaterialPageRoute(builder: (context) => const LoginForm()));
     } else {
       print("Please Filled All Field");
     }
@@ -53,7 +54,7 @@ class _SignupScreenState extends State<SignupScreen> {
       key: formKey,
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -96,10 +97,11 @@ class _SignupScreenState extends State<SignupScreen> {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15, right: 15, top: 5),
+                        padding:
+                            const EdgeInsets.only(left: 15, right: 15, top: 5),
                         child: TextFormField(
                           controller: name,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               border: InputBorder.none, hintText: "Username"),
                           // autovalidateMode: AutovalidateMode.onUserInteraction,
                           /* validator: (value) {
@@ -125,10 +127,11 @@ class _SignupScreenState extends State<SignupScreen> {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15, right: 15, top: 5),
+                        padding:
+                            const EdgeInsets.only(left: 15, right: 15, top: 5),
                         child: TextFormField(
                           controller: email,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               border: InputBorder.none, hintText: "email"),
                           //  autovalidateMode: AutovalidateMode.onUserInteraction,
                           /*validator: (value) {
@@ -154,11 +157,12 @@ class _SignupScreenState extends State<SignupScreen> {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15, right: 15, top: 5),
+                        padding:
+                            const EdgeInsets.only(left: 15, right: 15, top: 5),
                         child: TextFormField(
                           controller: pass,
                           obscureText: true,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               border: InputBorder.none, hintText: "Password"),
                           //  autovalidateMode: AutovalidateMode.onUserInteraction,
                           /*validator: (value) {
@@ -188,7 +192,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         alignment: Alignment.center,
                         width: MediaQuery.of(context).size.width,
                         height: 50,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           gradient: LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,

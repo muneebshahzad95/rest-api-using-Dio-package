@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:phploginform/screen/signupform.dart';
 import 'package:phploginform/widget/textwidget.dart';
 
 class LoginForm extends StatefulWidget {
@@ -33,8 +34,8 @@ class _LoginFormState extends State<LoginForm> {
           print(response);
           var a = jsonDecode(response.data);
           if (a == 'success') {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
           } else {
             print('user not found');
           }
@@ -55,7 +56,7 @@ class _LoginFormState extends State<LoginForm> {
       key: formKey,
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -97,10 +98,11 @@ class _LoginFormState extends State<LoginForm> {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15, right: 15, top: 5),
+                        padding:
+                            const EdgeInsets.only(left: 15, right: 15, top: 5),
                         child: TextFormField(
                           controller: email,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               border: InputBorder.none, hintText: "email"),
                           //  autovalidateMode: AutovalidateMode.onUserInteraction,
                           /*validator: (value) {
@@ -126,11 +128,12 @@ class _LoginFormState extends State<LoginForm> {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15, right: 15, top: 5),
+                        padding:
+                            const EdgeInsets.only(left: 15, right: 15, top: 5),
                         child: TextFormField(
                           controller: pass,
                           obscureText: true,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               border: InputBorder.none, hintText: "Password"),
                           //  autovalidateMode: AutovalidateMode.onUserInteraction,
                           /*validator: (value) {
@@ -160,7 +163,40 @@ class _LoginFormState extends State<LoginForm> {
                         alignment: Alignment.center,
                         width: MediaQuery.of(context).size.width,
                         height: 50,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [Colors.pinkAccent, Colors.orangeAccent]),
+                        ),
+/*decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),*/
+                        child: TextWidget(
+                            "Sign in", Colors.white, 16.0, FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  flex: 2,
+                  fit: FlexFit.loose,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignupScreen()));
+                    },
+                    child: Card(
+                      elevation: 3,
+                      shadowColor: Colors.pink,
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: MediaQuery.of(context).size.width,
+                        height: 50,
+                        decoration: const BoxDecoration(
                           gradient: LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
@@ -190,6 +226,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }
