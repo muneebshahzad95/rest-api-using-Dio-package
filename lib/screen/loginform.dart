@@ -1,6 +1,10 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:phploginform/controllers/login_controller.dart';
+import 'package:phploginform/models/login_model.dart';
 import 'package:phploginform/screen/signupform.dart';
 import 'package:phploginform/widget/textwidget.dart';
 
@@ -13,42 +17,7 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   GlobalKey formKey = GlobalKey();
-
-  TextEditingController email = TextEditingController();
-  TextEditingController pass = TextEditingController();
-
-  Future<dynamic> loginRecord() async {
-    var response;
-    Dio dio = Dio();
-    if (email.text != "" && pass.text != "") {
-      FormData formData = FormData.fromMap({
-        "email": email.text,
-        "password": pass.text,
-      });
-      try {
-        /*set the current PC ip*/
-        response = await dio.post("http://192.168.1.13/flutter_api/login.php",
-            data: formData);
-        print("connected with localhost");
-        if (response.statusCode == 200) {
-          print(response);
-          var a = jsonDecode(response.data);
-          if (a == 'success') {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()));
-          } else {
-            print('user not found');
-          }
-        }
-      } catch (e) {
-        print(e);
-      }
-    } else {
-      print("user not match");
-    }
-
-    return response.data;
-  }
+  LoginController loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +70,7 @@ class _LoginFormState extends State<LoginForm> {
                         padding:
                             const EdgeInsets.only(left: 15, right: 15, top: 5),
                         child: TextFormField(
-                          controller: email,
+                          controller: loginController.emailController,
                           decoration: const InputDecoration(
                               border: InputBorder.none, hintText: "email"),
                           //  autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -131,7 +100,7 @@ class _LoginFormState extends State<LoginForm> {
                         padding:
                             const EdgeInsets.only(left: 15, right: 15, top: 5),
                         child: TextFormField(
-                          controller: pass,
+                          controller: loginController.passwordController,
                           obscureText: true,
                           decoration: const InputDecoration(
                               border: InputBorder.none, hintText: "Password"),
@@ -152,7 +121,12 @@ class _LoginFormState extends State<LoginForm> {
                   fit: FlexFit.loose,
                   child: GestureDetector(
                     onTap: () {
-                      loginRecord();
+                      loginController.loginModel.email =
+                          loginController.emailController.text;
+                      loginController.loginModel.password =
+                          loginController.passwordController.text;
+
+                      loginController.loginRecord();
                       /*  Navigator.push(context,
                           MaterialPageRoute(builder: (context) => LoginForm()));*/
                     },
@@ -187,7 +161,7 @@ class _LoginFormState extends State<LoginForm> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const SignupScreen()));
+                              builder: (context) => SignupScreen()));
                     },
                     child: Card(
                       elevation: 3,
