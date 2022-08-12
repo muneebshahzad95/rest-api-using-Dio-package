@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+
 import 'package:phploginform/models/login_model.dart';
 
 class LoginController extends GetxController {
@@ -27,8 +30,7 @@ class LoginController extends GetxController {
           var a = jsonDecode(response.data);
           if (a == 'success') {
             print("welcome");
-            /*   Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()));*/
+            Get.toNamed('/home', arguments: true);
           } else {
             print('user not found');
           }

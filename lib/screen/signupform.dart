@@ -174,7 +174,7 @@ class SignupScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         width: MediaQuery.of(context).size.width,
                         height: 50,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           gradient: LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,

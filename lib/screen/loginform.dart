@@ -137,7 +137,7 @@ class _LoginFormState extends State<LoginForm> {
                         alignment: Alignment.center,
                         width: MediaQuery.of(context).size.width,
                         height: 50,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           gradient: LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
@@ -158,10 +158,7 @@ class _LoginFormState extends State<LoginForm> {
                   fit: FlexFit.loose,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignupScreen()));
+                      Get.toNamed('/signup', arguments: true);
                     },
                     child: Card(
                       elevation: 3,
@@ -170,7 +167,7 @@ class _LoginFormState extends State<LoginForm> {
                         alignment: Alignment.center,
                         width: MediaQuery.of(context).size.width,
                         height: 50,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           gradient: LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
@@ -192,14 +189,5 @@ class _LoginFormState extends State<LoginForm> {
         ),
       ),
     );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold();
   }
 }

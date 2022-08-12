@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
-import 'package:phploginform/models/signup_model.dart';
-import 'package:phploginform/screen/loginform.dart';
+import '../models/signup_model.dart';
 
 class SignUpController extends GetxController {
   var response;
@@ -14,7 +15,6 @@ class SignUpController extends GetxController {
   SignUpModel signUpModel = SignUpModel();
 
   Future<dynamic> insertrecord() async {
-    Dio dio = Dio();
     if (usernameController.text != "" &&
         emailController.text != "" &&
         passwordController.text != "") {
@@ -42,7 +42,7 @@ class SignUpController extends GetxController {
       } catch (e) {
         print(e);
       }
-      //Get.to(() => LoginForm());
+      Get.toNamed('/login', arguments: true);
     } else {
       print("Please Filled All Field");
     }
